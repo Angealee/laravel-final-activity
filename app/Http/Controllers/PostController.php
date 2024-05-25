@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('resources.post.index', ['posts' => $posts]);
     }
 
     /**
@@ -21,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('resources.post.create');
     }
 
     /**
@@ -29,7 +30,13 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        
+        Post::create([
+            'subject' => $request->subject,
+            'post' => $request->post,
+            'status' => (is_null($request->status) ? 0 : 1)
+        ]);
+        return redirect()->route('post.index')->with('message', 'Post Successfully Saved!');
     }
 
     /**
@@ -37,7 +44,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('resources.post.show', ['post' => $post]);
     }
 
     /**
@@ -45,7 +52,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('resources.post.edit', ['post' => $post]);
     }
 
     /**
@@ -53,7 +60,13 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->update([
+            'subject' => $request->subject,
+            'post' => $request->post,
+            'status' => (is_null($request->status) ? 0 : 1)
+        ]);
+        return redirect()->route('post.index')->with('message', 'Post Successfully Saved!');
+
     }
 
     /**
@@ -61,6 +74,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('post.index')->with('message', 'Post Successfully Deleted!');
     }
 }
