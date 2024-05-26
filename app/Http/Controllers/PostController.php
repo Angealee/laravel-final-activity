@@ -16,6 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Post::class);
         $posts = Post::where('user_id', Auth::user()->id)->get();
         return view('resources.post.index', ['posts' => $posts]);
     }
@@ -48,6 +49,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('view', Auth::user(), Post::class);
         return view('resources.post.show', ['post' => $post]);
     }
 
