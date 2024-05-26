@@ -87,4 +87,14 @@ class PostController extends Controller
         $posts = Post::where('status', 1)->get();
         return view('pages.index', ['posts' => $posts]);
     }
+    
+    public function postStatus()
+    {
+        $userId = Auth::user()->id;
+        $totalPosts = Post::where('user_id', $userId)->count();
+        $unpublishedPosts = Post::where('user_id', $userId)->where('status', 0)->count();
+        $publishedPosts = Post::where('user_id', $userId)->where('status', 1)->count();
+
+        return view('dashboard', compact('totalPosts', 'unpublishedPosts', 'publishedPosts'));
+    }
 }
