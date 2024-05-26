@@ -27,6 +27,10 @@
         
         <!-- Template Main CSS File -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+        <!-- Add SweetAlert CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
     </head>
     <body class="font-sans antialiased">
         @include('layouts.header')
@@ -54,5 +58,9 @@
         
         <!-- Template Main JS File -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
+
+        <!-- Add SweetAlert JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
     </body>
 </html>
