@@ -99,4 +99,5 @@ class PostController extends Controller
 
         return view('dashboard', compact('totalPosts', 'unpublishedPosts', 'publishedPosts'));
     }
+    
 }
